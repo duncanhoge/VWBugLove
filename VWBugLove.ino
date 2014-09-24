@@ -11,6 +11,7 @@ void setup()
   OneSheeld.begin();
   /* Set the LED pin as output. */
   pinMode(firstLED,OUTPUT);
+  pinMode(secondLED,OUTPUT);
 }
 
 void loop()
