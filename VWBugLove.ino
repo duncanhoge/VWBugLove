@@ -1,6 +1,9 @@
+
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
 #include <Button.h>
+
+
 
 
 /* Define LEDs */
@@ -8,12 +11,19 @@ int firstLED = 7;
 int secondLED = 8;
 int thirdLED = 9;
 
-/* Physical Button */
-//hopefully can get OneSheeld to do this
+/* Physical Button*/
 Button button = Button(12,PULLUP);
+
+/* Timer, to fade LEDs*/
+long previousMillis = 0;//last time LED updated
+long interval = 5000; //time til fade
+int lastLED = firstLED;//define last LED > target of fade, will change
 
 void setup()
 {
+  /*Debugging*/
+  Serial.begin(9600);
+  
   /* Start communication. */
   OneSheeld.begin(); //currently not needed.
   /* Set the LED pin as output. */
@@ -28,7 +38,12 @@ Make sure to set OneSheeld input to buttoninput (12);
 
 byte pressCount = 0;
 void loop(){
+  Serial.println(pressCount);
 
+  //start timer
+  unsigned long currentMillis = millis();
+  
+  //button functionality for LED scale
   if (button.uniquePress())  
     
     pressCount++;
@@ -40,6 +55,7 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(thirdLED,LOW);
             digitalWrite(secondLED,LOW);
+            pressCount=1;
   
           break;
           case 2:
@@ -47,6 +63,8 @@ void loop(){
             digitalWrite(secondLED,HIGH);
             digitalWrite(firstLED,HIGH);
             digitalWrite(6,LOW);
+            lastLED=secondLED;
+            pressCount=2;
    
           break;
           case 3:
@@ -54,18 +72,32 @@ void loop(){
             digitalWrite(thirdLED,HIGH);
             digitalWrite(secondLED,HIGH);
             digitalWrite(firstLED,HIGH);
+            lastLED=thirdLED;
+            pressCount=3;
         
           break;
-          case 4:
-          
-            digitalWrite(firstLED,LOW);
-            digitalWrite(thirdLED,LOW);
-            digitalWrite(secondLED,LOW);
-       
-          pressCount = 0;
-          break;  
+//          case 4:
+//          
+//            digitalWrite(firstLED,LOW);
+//            digitalWrite(thirdLED,LOW);
+//            digitalWrite(secondLED,LOW);
+//            pressCount = 0;
+//            
+//          break;  
 
-  }
+        }
 
- 
-   }
+  //fade timer
+  if(currentMillis - previousMillis > interval) {
+    // save the last time you blinked the LED 
+    previousMillis = currentMillis;
+    //turn off last led
+    digitalWrite(lastLED, LOW);
+      if(pressCount>0){
+        pressCount--;
+      }
+  }  
+
+}
+
+
