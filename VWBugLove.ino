@@ -28,7 +28,7 @@ void setup()
 byte pressCount = 0;
 void loop(){
 
-  if (PushButton.isPressed()>=1)  
+  if (button.uniquePress())  
     
     pressCount++;
   
