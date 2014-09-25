@@ -22,8 +22,9 @@ void setup()
   pinMode(thirdLED,OUTPUT);
 }
 
-/*GOAL: toggle light on and off, esp in succession for two leds*/
-/*ToggleButton may be the way to go.*/
+/*IMPORTANT:
+Make sure to set OneSheeld input to buttoninput (12);
+*/
 
 byte pressCount = 0;
 void loop(){
