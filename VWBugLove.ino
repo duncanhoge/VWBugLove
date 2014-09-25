@@ -45,6 +45,7 @@ void loop(){
             digitalWrite(thirdLED,LOW);
             lastLED=firstLED;
             pressCount++;
+            previousMillis=currentMillis;
   
           break;
           case 2:
@@ -54,6 +55,7 @@ void loop(){
             digitalWrite(thirdLED,LOW);
             lastLED=secondLED;
             pressCount++;
+            previousMillis=currentMillis;
    
           break;
           case 3:
@@ -63,6 +65,7 @@ void loop(){
             digitalWrite(thirdLED,HIGH);
             lastLED=thirdLED;
             pressCount=3;
+            previousMillis=currentMillis;
     
             
           break;  
