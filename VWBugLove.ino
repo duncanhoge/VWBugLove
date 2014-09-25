@@ -14,7 +14,7 @@ Button button = Button(12,PULLUP);
 /* Timer, to fade LEDs*/
 long previousMillis = 0;//last time LED updated
 long interval = 5000; //time til fade
-byte lastLED = firstLED;//define last LED > target of fade, will change
+byte currentLED = firstLED;//define last lit LED > target of fade, will change
 
 void setup()
 { 
@@ -28,6 +28,9 @@ void setup()
 
 byte pressCount = 1;
 void loop(){
+  
+  //start timer
+  unsigned long currentMillis = millis();
   
   //button functionality for LED scale
   if (button.uniquePress())  
@@ -43,7 +46,7 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(secondLED,LOW);
             digitalWrite(thirdLED,LOW);
-            lastLED=firstLED;
+            currentLED=firstLED;
             pressCount++;
             previousMillis=currentMillis;
   
@@ -53,7 +56,7 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(secondLED,HIGH);
             digitalWrite(thirdLED,LOW);
-            lastLED=secondLED;
+            currentLED=secondLED;
             pressCount++;
             previousMillis=currentMillis;
    
@@ -63,26 +66,36 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(secondLED,HIGH);
             digitalWrite(thirdLED,HIGH);
-            lastLED=thirdLED;
-            pressCount=3;
+            currentLED=thirdLED;
+            //pressCount=3;
             previousMillis=currentMillis;
     
-            
           break;  
 
         }
 
-  //start timer
-  unsigned long currentMillis = millis();
+
 
   //fade timer
   if(currentMillis - previousMillis > interval) {
     // save the last time you blinked the LED 
     previousMillis = currentMillis;
     //turn off last led
-    digitalWrite(lastLED, LOW);
-      if(pressCount>0){
-        pressCount--;
+    digitalWrite(currentLED, LOW);
+      if(pressCount>0 && currentLED==thirdLED){
+        currentLED=secondLED;
+        pressCount=3;
+      } 
+      else if(pressCount>0 && currentLED==secondLED){
+        currentLED=firstLED;
+        pressCount=2;
+      } 
+      else if(pressCount>0 && currentLED==firstLED){
+        currentLED=firstLED;
+        pressCount=1;
+      } 
+      else{
+        pressCount=1;
       }
   }  
 

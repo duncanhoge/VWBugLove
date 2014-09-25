@@ -15,11 +15,11 @@ VW Bug Love uses the 1Sheeld.
 -------------------
 VERSIONS AND GOALS:
 
-CURRENT --> v1: Use 1Sheeld to light up an LED on a button push
+v1: Use 1Sheeld to light up an LED on a button push
 
 v1.5: Use 1Sheeld to light up one LED for each button push (3 buttons total)
 
-v1.8: LED scale drops over time.
+CURRENT--> v1.8: LED scale drops over time.
 
 v2.0: Add a burst from one large LED when button is pushed, in addition to lighting up one on the scale.
 
