@@ -14,7 +14,7 @@ Button button = Button(12,PULLUP);
 /* Timer, to fade LEDs*/
 long previousMillis = 0;//last time LED updated
 long interval = 5000; //time til fade
-byte lastLED = 0;//define last LED > target of fade, will change
+byte lastLED = firstLED;//define last LED > target of fade, will change
 
 void setup()
 { 
