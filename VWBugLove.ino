@@ -31,9 +31,7 @@ void loop(){
   
   //button functionality for LED scale
   if (button.uniquePress())  
-    
-    //pressCount++;
-  
+      
     switch(pressCount)
         
         { case 0:
@@ -65,6 +63,7 @@ void loop(){
             digitalWrite(thirdLED,HIGH);
             lastLED=thirdLED;
             pressCount=3;
+    
             
           break;  
 
