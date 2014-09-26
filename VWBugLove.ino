@@ -9,7 +9,8 @@
 int firstLED = 7;
 int secondLED = 8;
 int thirdLED = 9;
-int burstLED = 11; //burst led, accent lighting
+
+int burstLED = 11;
 
 /* Physical Button*/
 Button button = Button(12,PULLUP);
@@ -28,21 +29,22 @@ void setup()
   pinMode(secondLED,OUTPUT);
   pinMode(thirdLED,OUTPUT);
   /* Burst LED */
-  pinMode(burstLED,OUTPUT);
+  pinMode(11,OUTPUT);
+
 }
 
 byte pressCount = 1;
+
 void loop(){
-  
-              //Burst of awesome!
-            //digitalWrite(burstLED,HIGH);
   
   //start timer
   unsigned long currentMillis = millis();
   
   //button functionality for LED scale
   if (button.uniquePress())  
-
+   
+   
+ // ledFadeAnimation();
     
     //Light Scale
     switch(pressCount)
@@ -59,6 +61,9 @@ void loop(){
             currentLED=firstLED;
             pressCount++;
             previousMillis=currentMillis;
+            digitalWrite(burstLED,HIGH);
+            delay(800);
+            digitalWrite(burstLED,LOW);
 
   
           break;
@@ -70,6 +75,10 @@ void loop(){
             currentLED=secondLED;
             pressCount++;
             previousMillis=currentMillis;
+            digitalWrite(burstLED,HIGH);
+            delay(800);
+            digitalWrite(burstLED,LOW);
+
    
           break;
           case 3:
@@ -80,6 +89,10 @@ void loop(){
             currentLED=thirdLED;
             //pressCount=3;
             previousMillis=currentMillis;
+            digitalWrite(burstLED,HIGH);
+            delay(800);
+            digitalWrite(burstLED,LOW);
+
     
           break;  
 
@@ -111,5 +124,21 @@ void loop(){
   }  
 
 }
+//
+//void ledFadeAnimation() {
+//  led.update();
+//
+//  if (led.is_fading() == false) {
+//
+//    // Fade from 255 - 0
+//    if (led.get_value() == 255) {
+//      led.fade(0, 3000);
+//    }
+//    // Fade from 0 - 255
+//    else {
+//      led.fade(255, 3000);
+//    }
+//  }
+//}
 
 
