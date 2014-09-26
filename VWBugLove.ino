@@ -1,12 +1,15 @@
 
 /* Include 1Sheeld library. */
-#include <OneSheeld.h>
-#include <Button.h>
+#include <OneSheeld.h> //optional
+#include <Button.h> //critical, functionality
+#include <Curve.h> //critical, animation
+#include <LEDFader.h> //critical, animation
 
 /* Define LEDs */
 int firstLED = 7;
 int secondLED = 8;
 int thirdLED = 9;
+int burstLED = 11; //burst led, accent lighting
 
 /* Physical Button*/
 Button button = Button(12,PULLUP);
@@ -24,17 +27,24 @@ void setup()
   pinMode(firstLED,OUTPUT);
   pinMode(secondLED,OUTPUT);
   pinMode(thirdLED,OUTPUT);
+  /* Burst LED */
+  pinMode(burstLED,OUTPUT);
 }
 
 byte pressCount = 1;
 void loop(){
+  
+              //Burst of awesome!
+            //digitalWrite(burstLED,HIGH);
   
   //start timer
   unsigned long currentMillis = millis();
   
   //button functionality for LED scale
   if (button.uniquePress())  
-      
+
+    
+    //Light Scale
     switch(pressCount)
         
         { case 0:
@@ -49,6 +59,7 @@ void loop(){
             currentLED=firstLED;
             pressCount++;
             previousMillis=currentMillis;
+
   
           break;
           case 2:
