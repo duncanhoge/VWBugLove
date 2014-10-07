@@ -2,8 +2,8 @@
 /* Include 1Sheeld library. */
 #include <OneSheeld.h> //optional
 #include <Button.h> //critical, functionality
-#include <Curve.h> //critical, animation
-#include <LEDFader.h> //critical, animation
+//#include <Curve.h> //critical, animation
+//#include <LEDFader.h> //critical, animation
 
 /* Define LEDs */
 int firstLED = 4;
@@ -33,11 +33,11 @@ void setup()
   pinMode(fourthLED,OUTPUT);
   pinMode(fifthLED,OUTPUT);
   /* Burst LED */
-  pinMode(11,OUTPUT);
+  pinMode(burstLED,OUTPUT);
 
 }
 
-byte pressCount = 1;
+byte pressCount = 0;
 
 void loop(){
   
@@ -97,7 +97,7 @@ void loop(){
             digitalWrite(fourthLED,LOW);
             digitalWrite(fifthLED,LOW);
             currentLED=thirdLED;
-            //pressCount=3;
+            pressCount++;
             previousMillis=currentMillis;
             digitalWrite(burstLED,HIGH);
             delay(800);
@@ -113,7 +113,7 @@ void loop(){
             digitalWrite(fourthLED,HIGH);
             digitalWrite(fifthLED,LOW);
             currentLED=fourthLED;
-            //pressCount=3;
+            pressCount++;
             previousMillis=currentMillis;
             digitalWrite(burstLED,HIGH);
             delay(800);
@@ -128,7 +128,7 @@ void loop(){
             digitalWrite(fourthLED,HIGH);
             digitalWrite(fifthLED,HIGH);
             currentLED=fifthLED;
-            //pressCount=3;
+           // pressCount++;
             previousMillis=currentMillis;
             digitalWrite(burstLED,HIGH);
             delay(800);
