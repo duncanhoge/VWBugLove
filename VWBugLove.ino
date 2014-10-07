@@ -6,9 +6,11 @@
 #include <LEDFader.h> //critical, animation
 
 /* Define LEDs */
-int firstLED = 7;
-int secondLED = 8;
-int thirdLED = 9;
+int firstLED = 4;
+int secondLED = 5;
+int thirdLED = 6;
+int fourthLED = 7;
+int fifthLED = 8;
 
 int burstLED = 11;
 
@@ -28,6 +30,8 @@ void setup()
   pinMode(firstLED,OUTPUT);
   pinMode(secondLED,OUTPUT);
   pinMode(thirdLED,OUTPUT);
+  pinMode(fourthLED,OUTPUT);
+  pinMode(fifthLED,OUTPUT);
   /* Burst LED */
   pinMode(11,OUTPUT);
 
@@ -58,6 +62,8 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(secondLED,LOW);
             digitalWrite(thirdLED,LOW);
+            digitalWrite(fourthLED,LOW);
+            digitalWrite(fifthLED,LOW);
             currentLED=firstLED;
             pressCount++;
             previousMillis=currentMillis;
@@ -72,6 +78,8 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(secondLED,HIGH);
             digitalWrite(thirdLED,LOW);
+            digitalWrite(fourthLED,LOW);
+            digitalWrite(fifthLED,LOW);
             currentLED=secondLED;
             pressCount++;
             previousMillis=currentMillis;
@@ -86,6 +94,8 @@ void loop(){
             digitalWrite(firstLED,HIGH);
             digitalWrite(secondLED,HIGH);
             digitalWrite(thirdLED,HIGH);
+            digitalWrite(fourthLED,LOW);
+            digitalWrite(fifthLED,LOW);
             currentLED=thirdLED;
             //pressCount=3;
             previousMillis=currentMillis;
@@ -94,7 +104,37 @@ void loop(){
             digitalWrite(burstLED,LOW);
 
     
-          break;  
+          break; 
+          case 4:
+          
+            digitalWrite(firstLED,HIGH);
+            digitalWrite(secondLED,HIGH);
+            digitalWrite(thirdLED,HIGH);
+            digitalWrite(fourthLED,HIGH);
+            digitalWrite(fifthLED,LOW);
+            currentLED=fourthLED;
+            //pressCount=3;
+            previousMillis=currentMillis;
+            digitalWrite(burstLED,HIGH);
+            delay(800);
+            digitalWrite(burstLED,LOW); 
+            
+          break; 
+          case 5:
+          
+            digitalWrite(firstLED,HIGH);
+            digitalWrite(secondLED,HIGH);
+            digitalWrite(thirdLED,HIGH);
+            digitalWrite(fourthLED,HIGH);
+            digitalWrite(fifthLED,HIGH);
+            currentLED=fifthLED;
+            //pressCount=3;
+            previousMillis=currentMillis;
+            digitalWrite(burstLED,HIGH);
+            delay(800);
+            digitalWrite(burstLED,LOW); 
+         
+           break;
 
         }
 
@@ -106,7 +146,15 @@ void loop(){
     previousMillis = currentMillis;
     //turn off last led
     digitalWrite(currentLED, LOW);
-      if(pressCount>0 && currentLED==thirdLED){
+      if(pressCount>0 && currentLED==fifthLED){
+        currentLED=fourthLED;
+        pressCount=5;
+      } 
+      else if(pressCount>0 && currentLED==fourthLED){
+        currentLED=thirdLED;
+        pressCount=4;
+      } 
+      else if(pressCount>0 && currentLED==thirdLED){
         currentLED=secondLED;
         pressCount=3;
       } 
